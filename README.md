@@ -1,8 +1,17 @@
 # HomebrUI
 
-A local web UI for [Homebrew](https://brew.sh). See everything you have installed, find out what you can safely remove, browse and install from the full catalog, upgrade, manage services and taps, and back up your setup with a Brewfile.
+A native Mac app for [Homebrew](https://brew.sh). See everything you have installed, find out what you can safely remove, browse and install from the full catalog, upgrade, manage services and taps, and back up your setup with a Brewfile.
 
-Runs only on your Mac (`127.0.0.1`), needs only Python 3 and no extra packages.
+Everything runs locally on your Mac (`127.0.0.1`); nothing is sent anywhere except the catalog download from Homebrew.
+
+## Download
+
+Get the app from the [latest release](https://github.com/Fese1000/HomebrUI/releases/latest), open the DMG and drag HomebrUI to Applications. Python is included, nothing else to install.
+
+- **HomebrUI-AppleSilicon.dmg** for Macs with Apple silicon (M1 and later)
+- **HomebrUI-Intel.dmg** for Intel Macs
+
+The app is not notarized, so macOS asks once on the first start (see [As an app](#as-an-app-without-a-terminal) below).
 
 > HomebrUI is an independent project and is not affiliated with Homebrew.
 
@@ -17,15 +26,15 @@ Runs only on your Mac (`127.0.0.1`), needs only Python 3 and no extra packages.
 - **8 languages** – English (default), German, French, Mandarin Chinese, Spanish, Portuguese, Arabic (right-to-left) and Russian.
 - **12 color schemes** – default (light, dark or following the system), Solarized, Gruvbox, Nord, Dracula, Monokai, Tokyo Night, One Dark and Catppuccin.
 
-Language, color scheme, the "long unused" threshold, the port and a list of ignored packages are set in the settings (gear icon).
+Language, color scheme, the "long unused" threshold and a list of ignored packages are set in the settings (gear icon).
 
 ## Requirements
 
-- macOS with Homebrew installed
-- Python 3 (tested with 3.13 and 3.15)
+- macOS 13 or later with Homebrew installed
+- To run from source: Python 3 (tested with 3.13 and 3.15), no extra packages
 - Internet access for the catalog in the Install view (cached for 24 hours)
 
-## Run
+## Run from source
 
 Double-click `start.command`, or:
 
@@ -33,7 +42,7 @@ Double-click `start.command`, or:
 python3 server.py
 ```
 
-To use a different port: `PORT=8766 python3 server.py`.
+The server uses port 8765. To use a different one: `PORT=8766 python3 server.py`.
 
 ### As an app, without a terminal
 
