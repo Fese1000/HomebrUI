@@ -1,0 +1,35 @@
+# Gebaute App (mit ./make-app.sh neu erzeugbar)
+HomebrUI.app/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+
+# Editoren und Werkzeuge
+.idea/
+.vscode/
+*.swp
+*~
+.claude/
+
+# Logs und lokale Dateien
+*.log
+.env
+.env.*
