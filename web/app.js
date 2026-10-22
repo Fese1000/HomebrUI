@@ -78,7 +78,7 @@ function vPackages() {
   const items = data.items, cand = items.filter(i => i.reasons.length);
   const stale = items.filter(i => i.on_request && staleDays(i) > data.stale_days);
   const top = [...items].sort((a, b) => b.size - a.size).slice(0, 12), max = top[0]?.size || 1;
-  const tabs = [['candidates', t('tab_cand', cand.length)], ['stale', t('tab_stale', stale.length)], ['mine', t('tab_mine', items.filter(i => i.on_request).length)], ['all', t('tab_all', items.length)]];
+  const tabs = [['all', t('tab_all', items.length)], ['mine', t('tab_mine', items.filter(i => i.on_request).length)], ['stale', t('tab_stale', stale.length)], ['candidates', t('tab_cand', cand.length)]];
   let rows = items.filter(i => tab == 'candidates' ? i.reasons.length : tab == 'stale' ? stale.includes(i) : tab == 'mine' ? i.on_request : true)
     .filter(i => !q || (i.name + ' ' + i.desc).toLowerCase().includes(q));
   rows.sort((a, b) => { let x = a[sortK], y = b[sortK]; return (typeof x == 'string' ? x.localeCompare(y) : (x || 0) - (y || 0)) * sortD; });
@@ -265,9 +265,12 @@ function settingsDialog() {
    <p><label>${t('s_lang')} <select id="sLang">${Object.entries(LANGS).map(([v, l]) => opt(v, l, config.lang)).join('')}</select></label></p>
    <p><label>${t('s_theme')} <select id="sTheme">${THEMES.map(([v, l]) => opt(v, l.startsWith('s_') ? t(l) : l, config.theme)).join('')}</select></label></p>
    <p><label>${t('s_stale1')} <input type="number" id="sStale" min="1" max="3650" value="${config.stale_days}" style="width:80px"> ${t('s_stale2')}</label></p>
+   <p><b id="updVer"></b> <button class="btn" id="updCheck">${t('u_check')}</button> <button class="btn on" id="updGo" hidden>${t('u_install')}</button></p>
+   <p class="sub" id="updMsg"></p>
     <p><b>${t('s_ignored')}</b></p>
    <div>${config.ignore.length ? config.ignore.map(n => `<span class="tag">${esc(n)} <a href="#" data-unign="${esc(n)}">×</a></span>`).join('') : `<span class="sub">${t('d_none')}</span>`}</div>
    <div class="actions"><button class="btn" data-a="x">${t('cancel')}</button><button class="btn on" data-a="save">${t('save')}</button></div>`;
+  setupUpdate();
   $('#sTheme').onchange = e => { document.documentElement.dataset.theme = e.target.value; };  // Live-Vorschau
   dlg.showModal();
   dlg.onclick = async e => {
@@ -278,6 +281,44 @@ function settingsDialog() {
       config = await api('/api/config', {theme: $('#sTheme').value, lang: $('#sLang').value, stale_days: +$('#sStale').value, ignore: config.ignore});
       applyConfig(); await load();
     } else applyConfig();
+  };
+}
+
+// Update-Bereich in den Einstellungen
+async function setupUpdate() {
+  const msg = $('#updMsg'), go = $('#updGo'), chk = $('#updCheck');
+  let st = await api('/api/update/status').catch(() => null);
+  if (!st) return;
+  $('#updVer').textContent = st.current ? t('u_ver', st.current) : 'HomebrUI';
+  if (!st.can_install) { chk.hidden = true; msg.textContent = t(st.reason == 'permission' ? 'u_perm' : 'u_src'); return; }
+  const show = st => {
+    if (st.stage == 'download') msg.textContent = t('u_dl', st.pct);
+    else if (st.stage == 'install') msg.textContent = t('u_inst');
+    else if (st.stage == 'restart') msg.textContent = t('u_restart');
+    else if (st.stage == 'error') { msg.textContent = t('u_err', st.error); chk.disabled = false; go.disabled = false; return false; }
+    return true;
+  };
+  const follow = async () => {
+    chk.disabled = go.disabled = true;
+    for (;;) {
+      const s = await api('/api/update/status').catch(() => ({stage: 'restart'}));  // Server weg = Neustart läuft
+      if (!show(s)) return;
+      await new Promise(r => setTimeout(r, 500));
+    }
+  };
+  if (['download', 'install', 'restart'].includes(st.stage)) return follow();
+  chk.onclick = async () => {
+    chk.disabled = true; msg.textContent = '…';
+    try {
+      const r = await api('/api/update/check', {});
+      if (r.available) { msg.textContent = t('u_avail', r.latest); go.hidden = false; chk.hidden = true; }
+      else msg.textContent = t('u_none');
+    } catch (e) { msg.textContent = t('u_fail', e.message); }
+    chk.disabled = false;
+  };
+  go.onclick = async () => {
+    if (!confirm(t('u_install') + '?')) return;
+    try { await api('/api/update/install', {}); follow(); } catch (e) { msg.textContent = t('u_err', e.message); }
   };
 }
 

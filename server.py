@@ -14,6 +14,7 @@ from urllib.parse import parse_qs, urlparse
 
 import brewlib
 import catalog
+import updater
 from brewlib import valid_name
 from jobs import JobManager
 
@@ -180,6 +181,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, {**public(get_data("refresh" in qs)), "config": brewlib.load_config()})
             if p == "/api/version":
                 return self.send(200, {"version": VERSION})
+            if p == "/api/update/status":
+                return self.send(200, updater.status())
             if p == "/api/jobs":
                 return self.send(200, JOBS.listing())
             if p.startswith("/api/jobs/"):
@@ -238,6 +241,19 @@ class Handler(BaseHTTPRequestHandler):
                 self.send(200, {"ok": True})
                 threading.Thread(target=SERVER["srv"].shutdown, daemon=True).start()
                 return
+            if p == "/api/update/check":
+                return self.send(200, updater.check())
+            if p == "/api/update/install":
+                if any(j["status"] in ("queued", "running") for j in JOBS.listing()["jobs"]):
+                    raise ValueError("Es läuft noch eine Aufgabe")
+                info = updater.check()
+                if not info["available"]:
+                    raise ValueError("Kein Update verfügbar")
+                def restart():
+                    import time
+                    time.sleep(1.5)  # die Oberfläche soll den Status noch abholen können
+                    SERVER["srv"].shutdown()
+                return self.send(200, {"ok": updater.install(info["asset"], restart)})
             if p == "/api/cancel":
                 return self.send(200, {"ok": JOBS.cancel(int(body.get("id", 0)))})
             if p == "/api/askpass/answer":

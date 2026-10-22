@@ -2,7 +2,7 @@
 
 A native Mac app for [Homebrew](https://brew.sh). See everything you have installed, find out what you can safely remove, browse and install from the full catalog, upgrade, manage services and taps, and back up your setup with a Brewfile.
 
-Everything runs locally on your Mac (`127.0.0.1`); nothing is sent anywhere except the catalog download from Homebrew.
+Everything runs locally on your Mac (`127.0.0.1`); the only network access besides Homebrew itself is the catalog download and, when you click "Check for updates" in the settings, a request to GitHub.
 
 ## Download
 
@@ -26,7 +26,7 @@ The app is not notarized, so macOS asks once on the first start (see [As an app]
 - **8 languages** – English (default), German, French, Mandarin Chinese, Spanish, Portuguese, Arabic (right-to-left) and Russian.
 - **12 color schemes** – default (light, dark or following the system), Solarized, Gruvbox, Nord, Dracula, Monokai, Tokyo Night, One Dark and Catppuccin.
 
-Language, color scheme, the "long unused" threshold and a list of ignored packages are set in the settings (gear icon).
+Language, color scheme, the "long unused" threshold and a list of ignored packages are set in the settings (gear icon). There you can also check for updates: the app downloads the new release from GitHub, verifies its checksum and signature, replaces itself and restarts.
 
 ## Requirements
 
@@ -78,6 +78,8 @@ python3 -m unittest discover tests
 | `server.py` | HTTP server and API |
 | `brewlib.py` | Reads Homebrew, computes removal candidates, Brewfile logic |
 | `catalog.py` | Catalog download, cache and categories |
+| `updater.py` | Update check and self-update of the app |
+| `VERSION` | App version (also written into the app; bump it for every release) |
 | `jobs.py` | Background jobs, live output, `sudo` prompt |
 | `askpass.py` | Helper that `sudo` calls to ask for the password |
 | `web/` | User interface and translations (`i18n.js`) |

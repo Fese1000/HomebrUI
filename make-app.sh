@@ -6,6 +6,7 @@ set -euo pipefail
 SRC="$(cd "$(dirname "$0")" && pwd)"
 DIST="$SRC/dist"; CACHE="$SRC/build/cache"
 PYVER="3.13"
+VERSION="$(cat "$SRC/VERSION")"
 mkdir -p "$DIST" "$CACHE"
 
 fetch_python() {  # $1 = arm64|x86_64 -> Pfad der Archivdatei
@@ -26,7 +27,7 @@ build() {  # $1 = arm64|x86_64
   local arch="$1" label; [ "$arch" = arm64 ] && label=AppleSilicon || label=Intel
   local stage="$SRC/build/$label" app="$SRC/build/$label/HomebrUI.app"
   rm -rf "$stage"; mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
-  cp -R "$SRC"/{server.py,brewlib.py,catalog.py,jobs.py,askpass.py,web} "$app/Contents/Resources/"
+  cp -R "$SRC"/{server.py,brewlib.py,catalog.py,jobs.py,updater.py,askpass.py,VERSION,web} "$app/Contents/Resources/"
   tar -xzf "$(fetch_python "$arch")" -C "$app/Contents/Resources"   # ergibt Resources/python
   cp "$SRC/app/AppIcon.icns" "$app/Contents/Resources/AppIcon.icns"
   swiftc -O -target "$arch-apple-macos13" "$SRC/app/HomebrUI.swift" -o "$app/Contents/MacOS/HomebrUI"
@@ -40,8 +41,8 @@ build() {  # $1 = arm64|x86_64
 <key>CFBundleExecutable</key><string>HomebrUI</string>
 <key>CFBundleIconFile</key><string>AppIcon</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleVersion</key><string>1.0</string>
-<key>CFBundleShortVersionString</key><string>1.0</string>
+<key>CFBundleVersion</key><string>$VERSION</string>
+<key>CFBundleShortVersionString</key><string>$VERSION</string>
 <key>LSMinimumSystemVersion</key><string>13.0</string>
 <key>NSHighResolutionCapable</key><true/>
 </dict></plist>
