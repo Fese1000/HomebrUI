@@ -33,7 +33,7 @@ function applyConfig() {
   if (!curJob) $('#jobtitle').textContent = t('jobs');
 }
 
-let data = null, view = 'packages', tab = 'candidates', sortK = 'name', sortD = 1, sel = new Set(), q = '', bfText = '', bfDiff = null;
+let data = null, view = 'packages', tab = 'all', sortK = 'name', sortD = 1, sel = new Set(), q = '', bfText = '', bfDiff = null;
 let curJob = null, polling = false, seen = 0, lastStatus = {}, askShown = false;
 
 async function api(path, body) {
