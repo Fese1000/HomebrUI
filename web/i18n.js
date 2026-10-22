@@ -32,7 +32,7 @@ en: {
  m_c1: 'Run cleanup?', m_c2: 'Also delete the entire download cache?', m_c3: 'Really remove orphaned dependencies?',
  b_export: 'Export', b_export_d: 'Saves all packages, casks and taps you installed as a Brewfile, e.g. for a new Mac.', b_dl: 'Download Brewfile', b_import: 'Import & compare', b_ph: 'Paste a Brewfile here or choose a file …', b_compare: 'Compare', b_missing: 'Missing on this Mac', b_extra: 'Only here, not in the Brewfile', b_nothing: '{0}: nothing.', b_unsup: '{0} entries of other types (mas, vscode …) are not compared.', b_install: 'Install Brewfile (only what is missing, no upgrades)', b_confirm: 'Install all missing entries from the Brewfile?',
  h_when: 'Removed on', h_reinstall: 'Reinstall', h_note: 'The current version is installed, not necessarily the old one.', h_none: 'Nothing uninstalled yet.',
- s_title: 'Settings', s_theme: 'Color scheme', s_lang: 'Language', s_stale1: '“Long unused” after', s_stale2: 'days', s_port: 'Port', s_portnote: '(applies after restarting the server)', s_ignored: 'Ignored packages (never flagged as candidates):', s_auto: 'Default (follows system)', s_light: 'Default light', s_dark: 'Default dark',
+ s_title: 'Settings', s_theme: 'Color scheme', s_lang: 'Language', s_stale1: '“Long unused” after', s_stale2: 'days', s_ignored: 'Ignored packages (never flagged as candidates):', s_auto: 'Default (follows system)', s_light: 'Default light', s_dark: 'Default dark',
  pw_title: 'Password required', pw_text: 'Homebrew needs administrator rights for this step (sudo).', pw_note: 'The password goes straight to sudo and is not stored.', ok: 'OK',
  q_confirm: 'Quit HomebrUI? It starts again the next time you open it.', q_done: 'Stopped. You can close this window.'
 },
@@ -66,7 +66,7 @@ de: {
  m_c1: 'Cleanup ausführen?', m_c2: 'Auch den kompletten Download-Cache löschen?', m_c3: 'Verwaiste Abhängigkeiten wirklich entfernen?',
  b_export: 'Exportieren', b_export_d: 'Sichert alle von dir installierten Pakete, Casks und Taps als Brewfile, z. B. für einen neuen Mac.', b_dl: 'Brewfile herunterladen', b_import: 'Importieren & vergleichen', b_ph: 'Brewfile hier einfügen oder Datei wählen …', b_compare: 'Vergleichen', b_missing: 'Fehlt auf diesem Mac', b_extra: 'Nur hier, nicht im Brewfile', b_nothing: '{0}: nichts.', b_unsup: '{0} Einträge anderer Typen (mas, vscode …) werden nicht verglichen.', b_install: 'Brewfile installieren (nur Fehlendes, ohne Upgrades)', b_confirm: 'Alle fehlenden Einträge aus dem Brewfile installieren?',
  h_when: 'Gelöscht am', h_reinstall: 'Wieder installieren', h_note: 'Installiert wird die jeweils aktuelle Version, nicht unbedingt die alte.', h_none: 'Noch nichts deinstalliert.',
- s_title: 'Einstellungen', s_theme: 'Farbschema', s_lang: 'Sprache', s_stale1: '„Lange ungenutzt“ ab', s_stale2: 'Tagen', s_port: 'Port', s_portnote: '(gilt nach Neustart des Servers)', s_ignored: 'Ignorierte Pakete (werden nie als Kandidat markiert):', s_auto: 'Standard (folgt dem System)', s_light: 'Standard hell', s_dark: 'Standard dunkel',
+ s_title: 'Einstellungen', s_theme: 'Farbschema', s_lang: 'Sprache', s_stale1: '„Lange ungenutzt“ ab', s_stale2: 'Tagen', s_ignored: 'Ignorierte Pakete (werden nie als Kandidat markiert):', s_auto: 'Standard (folgt dem System)', s_light: 'Standard hell', s_dark: 'Standard dunkel',
  pw_title: 'Passwort benötigt', pw_text: 'Homebrew braucht für diesen Schritt deine Administrator-Rechte (sudo).', pw_note: 'Das Passwort geht nur direkt an sudo und wird nicht gespeichert.', ok: 'OK',
  q_confirm: 'HomebrUI beenden? Beim nächsten Öffnen startet es wieder.', q_done: 'Beendet. Du kannst dieses Fenster schließen.'
 },
@@ -100,7 +100,7 @@ fr: {
  m_c1: 'Lancer le nettoyage ?', m_c2: 'Supprimer aussi tout le cache de téléchargement ?', m_c3: 'Supprimer vraiment les dépendances orphelines ?',
  b_export: 'Exporter', b_export_d: 'Enregistre tous vos paquets, casks et taps dans un Brewfile, par ex. pour un nouveau Mac.', b_dl: 'Télécharger le Brewfile', b_import: 'Importer & comparer', b_ph: 'Collez un Brewfile ici ou choisissez un fichier …', b_compare: 'Comparer', b_missing: 'Manquant sur ce Mac', b_extra: 'Seulement ici, pas dans le Brewfile', b_nothing: '{0} : rien.', b_unsup: '{0} entrées d’autres types (mas, vscode …) ne sont pas comparées.', b_install: 'Installer le Brewfile (seulement ce qui manque, sans mises à niveau)', b_confirm: 'Installer toutes les entrées manquantes du Brewfile ?',
  h_when: 'Supprimé le', h_reinstall: 'Réinstaller', h_note: 'La version actuelle est installée, pas forcément l’ancienne.', h_none: 'Rien de désinstallé pour l’instant.',
- s_title: 'Réglages', s_theme: 'Thème de couleurs', s_lang: 'Langue', s_stale1: '« Longtemps inutilisé » après', s_stale2: 'jours', s_port: 'Port', s_portnote: '(après redémarrage du serveur)', s_ignored: 'Paquets ignorés (jamais signalés) :', s_auto: 'Par défaut (suit le système)', s_light: 'Par défaut clair', s_dark: 'Par défaut sombre',
+ s_title: 'Réglages', s_theme: 'Thème de couleurs', s_lang: 'Langue', s_stale1: '« Longtemps inutilisé » après', s_stale2: 'jours', s_ignored: 'Paquets ignorés (jamais signalés) :', s_auto: 'Par défaut (suit le système)', s_light: 'Par défaut clair', s_dark: 'Par défaut sombre',
  pw_title: 'Mot de passe requis', pw_text: 'Homebrew a besoin des droits administrateur pour cette étape (sudo).', pw_note: 'Le mot de passe va directement à sudo et n’est pas enregistré.', ok: 'OK',
  q_confirm: 'Quitter HomebrUI ? Il redémarrera à la prochaine ouverture.', q_done: 'Arrêté. Vous pouvez fermer cette fenêtre.'
 },
@@ -134,7 +134,7 @@ zh: {
  m_c1: '执行清理？', m_c2: '同时删除全部下载缓存？', m_c3: '确定移除孤立的依赖项吗？',
  b_export: '导出', b_export_d: '将你安装的所有软件包、cask 和 tap 保存为 Brewfile，例如用于新 Mac。', b_dl: '下载 Brewfile', b_import: '导入并比较', b_ph: '在此粘贴 Brewfile 或选择文件 …', b_compare: '比较', b_missing: '此 Mac 上缺少', b_extra: '仅存在于此处，不在 Brewfile 中', b_nothing: '{0}：无。', b_unsup: '其他类型的 {0} 个条目（mas、vscode …）不参与比较。', b_install: '安装 Brewfile（仅安装缺少的，不升级）', b_confirm: '安装 Brewfile 中所有缺少的条目吗？',
  h_when: '卸载时间', h_reinstall: '重新安装', h_note: '将安装当前最新版本，不一定是之前的版本。', h_none: '尚未卸载任何内容。',
- s_title: '设置', s_theme: '配色方案', s_lang: '语言', s_stale1: '超过', s_stale2: '天未使用视为“长期未使用”', s_port: '端口', s_portnote: '（重启服务器后生效）', s_ignored: '已忽略的软件包（不会被标记为可删除）：', s_auto: '默认（跟随系统）', s_light: '默认浅色', s_dark: '默认深色',
+ s_title: '设置', s_theme: '配色方案', s_lang: '语言', s_stale1: '超过', s_stale2: '天未使用视为“长期未使用”', s_ignored: '已忽略的软件包（不会被标记为可删除）：', s_auto: '默认（跟随系统）', s_light: '默认浅色', s_dark: '默认深色',
  pw_title: '需要密码', pw_text: '此步骤需要管理员权限 (sudo)。', pw_note: '密码只会直接交给 sudo，不会被保存。', ok: '确定',
  q_confirm: '退出 HomebrUI？下次打开时会重新启动。', q_done: '已停止。你可以关闭此窗口。'
 },
@@ -168,7 +168,7 @@ es: {
  m_c1: '¿Ejecutar la limpieza?', m_c2: '¿Borrar también toda la caché de descargas?', m_c3: '¿Eliminar de verdad las dependencias huérfanas?',
  b_export: 'Exportar', b_export_d: 'Guarda todos los paquetes, casks y taps que instalaste como un Brewfile, p. ej. para un Mac nuevo.', b_dl: 'Descargar Brewfile', b_import: 'Importar y comparar', b_ph: 'Pega un Brewfile aquí o elige un archivo …', b_compare: 'Comparar', b_missing: 'Falta en este Mac', b_extra: 'Solo aquí, no en el Brewfile', b_nothing: '{0}: nada.', b_unsup: '{0} entradas de otros tipos (mas, vscode …) no se comparan.', b_install: 'Instalar Brewfile (solo lo que falta, sin actualizar)', b_confirm: '¿Instalar todas las entradas que faltan del Brewfile?',
  h_when: 'Eliminado el', h_reinstall: 'Reinstalar', h_note: 'Se instala la versión actual, no necesariamente la antigua.', h_none: 'Aún no se ha desinstalado nada.',
- s_title: 'Ajustes', s_theme: 'Esquema de color', s_lang: 'Idioma', s_stale1: '«Sin uso» a partir de', s_stale2: 'días', s_port: 'Puerto', s_portnote: '(se aplica al reiniciar el servidor)', s_ignored: 'Paquetes ignorados (nunca se marcan):', s_auto: 'Predeterminado (sigue al sistema)', s_light: 'Predeterminado claro', s_dark: 'Predeterminado oscuro',
+ s_title: 'Ajustes', s_theme: 'Esquema de color', s_lang: 'Idioma', s_stale1: '«Sin uso» a partir de', s_stale2: 'días', s_ignored: 'Paquetes ignorados (nunca se marcan):', s_auto: 'Predeterminado (sigue al sistema)', s_light: 'Predeterminado claro', s_dark: 'Predeterminado oscuro',
  pw_title: 'Se necesita contraseña', pw_text: 'Homebrew necesita permisos de administrador para este paso (sudo).', pw_note: 'La contraseña va directamente a sudo y no se guarda.', ok: 'Aceptar',
  q_confirm: '¿Salir de HomebrUI? Se iniciará de nuevo la próxima vez que lo abras.', q_done: 'Detenido. Puedes cerrar esta ventana.'
 },
@@ -202,7 +202,7 @@ pt: {
  m_c1: 'Executar a limpeza?', m_c2: 'Apagar também todo o cache de downloads?', m_c3: 'Remover mesmo as dependências órfãs?',
  b_export: 'Exportar', b_export_d: 'Salva todos os pacotes, casks e taps que você instalou como um Brewfile, por exemplo para um Mac novo.', b_dl: 'Baixar Brewfile', b_import: 'Importar e comparar', b_ph: 'Cole um Brewfile aqui ou escolha um arquivo …', b_compare: 'Comparar', b_missing: 'Ausente neste Mac', b_extra: 'Só aqui, não está no Brewfile', b_nothing: '{0}: nada.', b_unsup: '{0} entradas de outros tipos (mas, vscode …) não são comparadas.', b_install: 'Instalar Brewfile (só o que falta, sem atualizações)', b_confirm: 'Instalar todas as entradas ausentes do Brewfile?',
  h_when: 'Removido em', h_reinstall: 'Reinstalar', h_note: 'A versão atual é instalada, não necessariamente a antiga.', h_none: 'Nada foi desinstalado ainda.',
- s_title: 'Configurações', s_theme: 'Esquema de cores', s_lang: 'Idioma', s_stale1: '“Sem uso” após', s_stale2: 'dias', s_port: 'Porta', s_portnote: '(vale após reiniciar o servidor)', s_ignored: 'Pacotes ignorados (nunca são marcados):', s_auto: 'Padrão (segue o sistema)', s_light: 'Padrão claro', s_dark: 'Padrão escuro',
+ s_title: 'Configurações', s_theme: 'Esquema de cores', s_lang: 'Idioma', s_stale1: '“Sem uso” após', s_stale2: 'dias', s_ignored: 'Pacotes ignorados (nunca são marcados):', s_auto: 'Padrão (segue o sistema)', s_light: 'Padrão claro', s_dark: 'Padrão escuro',
  pw_title: 'Senha necessária', pw_text: 'O Homebrew precisa de direitos de administrador para esta etapa (sudo).', pw_note: 'A senha vai direto para o sudo e não é armazenada.', ok: 'OK',
  q_confirm: 'Sair do HomebrUI? Ele inicia de novo na próxima vez que você abrir.', q_done: 'Encerrado. Você pode fechar esta janela.'
 },
@@ -236,7 +236,7 @@ ar: {
  m_c1: 'تنفيذ التنظيف؟', m_c2: 'حذف ذاكرة التنزيل المؤقتة بالكامل أيضًا؟', m_c3: 'هل تريد إزالة التبعيات اليتيمة فعلًا؟',
  b_export: 'تصدير', b_export_d: 'يحفظ كل الحزم والـ casks والـ taps التي ثبّتّها في Brewfile، مثلًا لجهاز Mac جديد.', b_dl: 'تنزيل Brewfile', b_import: 'استيراد ومقارنة', b_ph: 'الصق Brewfile هنا أو اختر ملفًا …', b_compare: 'مقارنة', b_missing: 'مفقود على هذا الجهاز', b_extra: 'موجود هنا فقط وليس في Brewfile', b_nothing: '{0}: لا شيء.', b_unsup: '{0} إدخالات من أنواع أخرى (mas وvscode …) لا تتم مقارنتها.', b_install: 'تثبيت Brewfile (المفقود فقط، دون ترقيات)', b_confirm: 'تثبيت كل الإدخالات المفقودة من Brewfile؟',
  h_when: 'تاريخ الحذف', h_reinstall: 'إعادة التثبيت', h_note: 'يتم تثبيت الإصدار الحالي، وليس بالضرورة القديم.', h_none: 'لم يتم إلغاء تثبيت أي شيء بعد.',
- s_title: 'الإعدادات', s_theme: 'نظام الألوان', s_lang: 'اللغة', s_stale1: '«غير مستخدمة منذ مدة» بعد', s_stale2: 'يومًا', s_port: 'المنفذ', s_portnote: '(يسري بعد إعادة تشغيل الخادم)', s_ignored: 'الحزم المتجاهلة (لا تُعلَّم أبدًا كمرشحة):', s_auto: 'الافتراضي (يتبع النظام)', s_light: 'الافتراضي فاتح', s_dark: 'الافتراضي داكن',
+ s_title: 'الإعدادات', s_theme: 'نظام الألوان', s_lang: 'اللغة', s_stale1: '«غير مستخدمة منذ مدة» بعد', s_stale2: 'يومًا', s_ignored: 'الحزم المتجاهلة (لا تُعلَّم أبدًا كمرشحة):', s_auto: 'الافتراضي (يتبع النظام)', s_light: 'الافتراضي فاتح', s_dark: 'الافتراضي داكن',
  pw_title: 'كلمة المرور مطلوبة', pw_text: 'يحتاج Homebrew إلى صلاحيات المسؤول لهذه الخطوة (sudo).', pw_note: 'تذهب كلمة المرور مباشرة إلى sudo ولا يتم حفظها.', ok: 'موافق',
  q_confirm: 'هل تريد إنهاء HomebrUI؟ سيبدأ من جديد عند فتحه في المرة القادمة.', q_done: 'تم الإيقاف. يمكنك إغلاق هذه النافذة.'
 },
@@ -270,7 +270,7 @@ ru: {
  m_c1: 'Выполнить очистку?', m_c2: 'Удалить также весь кэш загрузок?', m_c3: 'Действительно удалить осиротевшие зависимости?',
  b_export: 'Экспорт', b_export_d: 'Сохраняет все установленные вами пакеты, casks и taps в Brewfile, например для нового Mac.', b_dl: 'Скачать Brewfile', b_import: 'Импорт и сравнение', b_ph: 'Вставьте Brewfile сюда или выберите файл …', b_compare: 'Сравнить', b_missing: 'Отсутствует на этом Mac', b_extra: 'Только здесь, нет в Brewfile', b_nothing: '{0}: ничего.', b_unsup: '{0} записей других типов (mas, vscode …) не сравниваются.', b_install: 'Установить Brewfile (только недостающее, без обновлений)', b_confirm: 'Установить все недостающие записи из Brewfile?',
  h_when: 'Удалено', h_reinstall: 'Установить снова', h_note: 'Будет установлена текущая версия, не обязательно прежняя.', h_none: 'Пока ничего не удалено.',
- s_title: 'Настройки', s_theme: 'Цветовая схема', s_lang: 'Язык', s_stale1: '«Давно не используется» после', s_stale2: 'дн.', s_port: 'Порт', s_portnote: '(вступит в силу после перезапуска сервера)', s_ignored: 'Игнорируемые пакеты (никогда не помечаются):', s_auto: 'Стандартная (как в системе)', s_light: 'Стандартная светлая', s_dark: 'Стандартная тёмная',
+ s_title: 'Настройки', s_theme: 'Цветовая схема', s_lang: 'Язык', s_stale1: '«Давно не используется» после', s_stale2: 'дн.', s_ignored: 'Игнорируемые пакеты (никогда не помечаются):', s_auto: 'Стандартная (как в системе)', s_light: 'Стандартная светлая', s_dark: 'Стандартная тёмная',
  pw_title: 'Нужен пароль', pw_text: 'Для этого шага Homebrew нужны права администратора (sudo).', pw_note: 'Пароль передаётся только sudo и нигде не сохраняется.', ok: 'ОК',
  q_confirm: 'Выйти из HomebrUI? При следующем открытии он запустится снова.', q_done: 'Остановлено. Это окно можно закрыть.'
 }

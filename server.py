@@ -169,7 +169,13 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if p in STATIC:
                 f, ctype = STATIC[p]
-                return self.send(200, (WEB / f).read_bytes(), ctype)
+                body = (WEB / f).read_bytes()
+                if p == "/":  # Theme/Sprache schon im HTML setzen, damit beim Laden nichts umspringt
+                    cfg = brewlib.load_config()
+                    if cfg["theme"] not in brewlib.THEMES or cfg["lang"] not in brewlib.LANGS:
+                        cfg = brewlib.DEFAULT_CONFIG  # handgeschriebene Config nie ungeprüft ins HTML
+                    body = body.replace(b'<html lang="en">', f'<html lang="{cfg["lang"]}" dir="{"rtl" if cfg["lang"] == "ar" else "ltr"}" data-theme="{cfg["theme"]}">'.encode(), 1)
+                return self.send(200, body, ctype)
             if p == "/api/data":
                 return self.send(200, {**public(get_data("refresh" in qs)), "config": brewlib.load_config()})
             if p == "/api/version":

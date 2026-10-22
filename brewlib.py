@@ -66,8 +66,6 @@ def save_config(new):
         cfg["theme"] = new["theme"]
     if new.get("lang") in LANGS:
         cfg["lang"] = new["lang"]
-    if isinstance(new.get("port"), int) and 1024 <= new["port"] <= 65535:
-        cfg["port"] = new["port"]
     if isinstance(new.get("stale_days"), int) and 1 <= new["stale_days"] <= 3650:
         cfg["stale_days"] = new["stale_days"]
     if isinstance(new.get("ignore"), list):

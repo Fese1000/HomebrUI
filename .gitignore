@@ -33,3 +33,7 @@ dist/
 *.log
 .env
 .env.*
+
+# Build-Ausgaben
+build/
+dist/

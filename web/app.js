@@ -3,7 +3,9 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&
 const key = i => i.kind + ':' + i.name;
 
 // ---------- Sprache ----------
-let config = {lang: 'en', theme: 'auto', ignore: [], stale_days: 180, port: 8765};
+// Startwerte kommen vom Server schon im <html>-Tag; so springt beim Laden nichts um
+const H0 = document.documentElement;
+let config = {lang: H0.lang || 'en', theme: H0.dataset.theme || 'auto', ignore: [], stale_days: 180};
 const t = (k, ...a) => {
   let s = (I18N[config.lang] || {})[k] ?? I18N.en[k] ?? k;
   a.forEach((v, i) => { s = s.split('{' + i + '}').join(v); });
@@ -263,8 +265,7 @@ function settingsDialog() {
    <p><label>${t('s_lang')} <select id="sLang">${Object.entries(LANGS).map(([v, l]) => opt(v, l, config.lang)).join('')}</select></label></p>
    <p><label>${t('s_theme')} <select id="sTheme">${THEMES.map(([v, l]) => opt(v, l.startsWith('s_') ? t(l) : l, config.theme)).join('')}</select></label></p>
    <p><label>${t('s_stale1')} <input type="number" id="sStale" min="1" max="3650" value="${config.stale_days}" style="width:80px"> ${t('s_stale2')}</label></p>
-   <p><label>${t('s_port')} <input type="number" id="sPort" min="1024" max="65535" value="${config.port}" style="width:90px"></label> <span class="sub">${t('s_portnote')}</span></p>
-   <p><b>${t('s_ignored')}</b></p>
+    <p><b>${t('s_ignored')}</b></p>
    <div>${config.ignore.length ? config.ignore.map(n => `<span class="tag">${esc(n)} <a href="#" data-unign="${esc(n)}">×</a></span>`).join('') : `<span class="sub">${t('d_none')}</span>`}</div>
    <div class="actions"><button class="btn" data-a="x">${t('cancel')}</button><button class="btn on" data-a="save">${t('save')}</button></div>`;
   $('#sTheme').onchange = e => { document.documentElement.dataset.theme = e.target.value; };  // Live-Vorschau
@@ -274,7 +275,7 @@ function settingsDialog() {
     const a = e.target.dataset.a; if (!a) return;
     dlg.close(); dlg.onclick = null;
     if (a == 'save') {
-      config = await api('/api/config', {theme: $('#sTheme').value, lang: $('#sLang').value, stale_days: +$('#sStale').value, port: +$('#sPort').value, ignore: config.ignore});
+      config = await api('/api/config', {theme: $('#sTheme').value, lang: $('#sLang').value, stale_days: +$('#sStale').value, ignore: config.ignore});
       applyConfig(); await load();
     } else applyConfig();
   };

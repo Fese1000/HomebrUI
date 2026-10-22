@@ -38,10 +38,12 @@ To use a different port: `PORT=8766 python3 server.py`.
 ### As an app, without a terminal
 
 ```bash
-./make-app.sh
+./make-app.sh all     # or: arm64 | x86_64
 ```
 
-This builds `HomebrUI.app`. Double-clicking it starts the server in the background and opens your browser. If an older version is still running, it is replaced; if the current version is already running, it just opens the browser. Quit it with the power icon in the sidebar. The app can be moved to `/Applications`; rebuild it after changing the code. Log: `~/.brew-aufraeumer/server.log`.
+Builds `dist/HomebrUI-AppleSilicon.dmg` and `dist/HomebrUI-Intel.dmg`. Each contains a native macOS app with its own window (WKWebView), the HomebrUI server and an embedded Python, so nothing else has to be installed: open the DMG and drag the app to Applications. The first build downloads the matching [python-build-standalone](https://github.com/astral-sh/python-build-standalone) once (cached in `build/cache`). Building needs the Xcode Command Line Tools (`swiftc`); the app needs macOS 13+.
+
+The app is only ad-hoc signed, so macOS warns on the first start of a downloaded copy. On macOS 15 and later: try to open the app once, then go to System Settings → Privacy & Security and click "Open Anyway". On macOS 13/14: right-click the app, then Open. For a proper signature and notarization set `CODESIGN_ID="Developer ID Application: ..."` and notarize the DMG with `notarytool`. Quit with the power icon or by closing the window. Log: `~/.brew-aufraeumer/server.log`.
 
 ### Menu bar (optional)
 
