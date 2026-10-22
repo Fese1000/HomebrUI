@@ -97,7 +97,7 @@ function vPackages() {
    <td><div class="name" data-detail="${esc(key(i))}">${esc(i.name)}</div><div class="desc">${esc(i.desc)}</div>${i.reasons.map(r => `<div class="why">${esc(reasonText(r))}</div>`).join('')}</td>
    <td>${kind(i.kind)}</td><td>${esc(i.version)}</td><td class="num">${fmt(i.size)}</td><td>${day(i.last_used)}</td><td>${day(i.installed_at)}</td>
    <td>${i.reasons.map(r => `<span class="tag r">${reasonLabel(r)}</span>`).join('')}<span class="tag">${i.on_request ? t('t_byme') : t('t_dep')}</span>
-   ${i.used_by.length ? `<span class="tag" title="${esc(i.used_by.join(', '))}">${t('t_usedby', i.used_by.length)}</span>` : ''}${i.outdated ? `<span class="tag ok">${t('t_update')}</span>` : ''}${i.pinned ? `<span class="tag">${t('t_pinned')}</span>` : ''}${i.ignored ? `<span class="tag">${t('t_ignored')}</span>` : ''}</td></tr>`).join('')}
+   ${i.used_by.length ? `<span class="tag link" data-usedby="${esc(key(i))}" title="${esc(i.used_by.join(', '))}">${t('t_usedby', i.used_by.length)}</span>` : ''}${i.outdated ? `<span class="tag ok">${t('t_update')}</span>` : ''}${i.pinned ? `<span class="tag">${t('t_pinned')}</span>` : ''}${i.ignored ? `<span class="tag">${t('t_ignored')}</span>` : ''}</td></tr>`).join('')}
   </tbody></table>` : `<div class="empty">${tab == 'candidates' ? t('e_cand') : t('e_none')}</div>`}`;
 }
 
@@ -121,6 +121,22 @@ async function uninstallDialog(items) {
   dlg.onclick = null; dlg.showModal();
   dlg.querySelector('[value=x]').onclick = () => dlg.close();
   $('#go').onclick = () => { act({action: 'uninstall', items: ok.map(i => ({kind: i.kind, name: i.name})), also: $('#alsoChk')?.checked ? pre.also : []}); dlg.close(); sel.clear(); };
+}
+
+// Liste der Pakete, die dieses Paket brauchen; ein Klick auf einen Namen öffnet dessen Details
+function usedByDialog(k) {
+  const i = data.items.find(x => key(x) == k), dlg = $('#dlg');
+  const byName = Object.fromEntries(data.items.filter(x => x.kind == 'formula').map(x => [x.name, x]));
+  dlg.innerHTML = `<h3>${esc(i.name)} <span class="sub">${t('d_neededby')} (${i.used_by.length})</span></h3>
+   <table><tbody>${i.used_by.map(n => `<tr><td><div class="name" data-open="${esc(n)}">${esc(n)}</div><div class="desc">${esc(byName[n]?.desc || '')}</div></td>
+    <td><span class="tag">${byName[n]?.on_request ? t('t_byme') : t('t_dep')}</span></td></tr>`).join('')}</tbody></table>
+   <div class="actions"><button class="btn" data-a="x">${t('close')}</button></div>`;
+  dlg.showModal();
+  dlg.onclick = e => {
+    const n = e.target.dataset.open;
+    if (n && byName[n]) { dlg.close(); detailDialog(key(byName[n])); }
+    else if (e.target.dataset.a == 'x') dlg.close();
+  };
 }
 
 function detailDialog(k) {
@@ -380,6 +396,7 @@ document.addEventListener('click', async e => {
   if (d.view) { view = d.view; render(); }
   else if (d.tab) { tab = d.tab; render(); }
   else if (d.detail) detailDialog(d.detail);
+  else if (d.usedby) usedByDialog(d.usedby);
   else if (d.job) { curJob = +d.job; seen = 0; $('#joblog').textContent = ''; poll(); }
   else if (d.inst) { const [k, n] = d.inst.split(/:(.*)/s); act({action: 'install', kind: k, name: n}); }
   else if (d.svc) { const [o, n] = d.svc.split(/:(.*)/s); act({action: 'services', op: o, name: n}); }
